@@ -15,7 +15,7 @@ export default function Home() {
         <SectionTitle title="關於我們" />
         <div className="bg-white shadow-xl rounded-xl p-8 mt-6">
           <p className="text-lg text-gray-700 leading-relaxed">
-            毛貓寵物動物醫院的誕生，源自一位獸醫師對動物深深的熱愛與責任感。
+            毛貓寵物動物醫院的誕生，源自一群獸醫師對動物深深的熱愛與責任感。
             他相信，每一隻寵物都應該被細緻照顧、被溫柔對待，不只是身體的病痛，
             更包括情緒的安撫與家庭的理解。
             <br /><br />
