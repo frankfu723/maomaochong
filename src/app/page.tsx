@@ -3,142 +3,94 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import {
-  FaPhone,
-  FaMapMarkerAlt,
-  FaPaw
-} from "react-icons/fa";
+import { FaPhone, FaMapMarkerAlt, FaPaw } from "react-icons/fa";
 
 export default function Home() {
-  const router = useRouter(); // ✅ 用於導航到獨立頁面
+  const router = useRouter();
+
   return (
     <main className="bg-[#E6D6CC] text-gray-900">
       {/* 🔹 關於我們 */}
       <section id="about" className="max-w-6xl mx-auto py-16 px-6 text-center">
-        <h2 className="text-4xl font-bold text-[#5A4032] flex items-center justify-center gap-2">
-          <FaPaw className="text-yellow-500" /> 關於我們
-        </h2>
+        <SectionTitle title="關於我們" />
         <div className="bg-white shadow-xl rounded-xl p-8 mt-6">
           <p className="text-lg text-gray-700 leading-relaxed">
-            毛貓寵物動物醫院的誕生，源自一位獸醫師對動物深深的熱愛與責任感。他相信，每一隻寵物都應該被細緻照顧、被溫柔對待，不只是身體的病痛，更包括情緒的安撫與家庭的理解。
+            毛貓寵物動物醫院的誕生，源自一位獸醫師對動物深深的熱愛與責任感。
+            他相信，每一隻寵物都應該被細緻照顧、被溫柔對待，不只是身體的病痛，
+            更包括情緒的安撫與家庭的理解。
             <br /><br />
-            為了實踐這份理想，寵物動物醫院打造了一個以「動物友善」為核心理念的診療空間，從動線設計、氣味管理到診療方式，處處用心，只為減少寵物的焦慮與壓力。院內的醫療團隊擁有專精於貓科、皮膚科、家醫科、中西醫整合療法、雷射治療、老年照護、腫瘤外科等豐富經驗，提供全方位且細緻的醫療服務。
+            為了實踐這份理想，寵物動物醫院打造了一個以「動物友善」為核心理念的診療空間，
+            從動線設計、氣味管理到診療方式，處處用心，只為減少寵物的焦慮與壓力。
+            院內的醫療團隊擁有專精於貓科、皮膚科、家醫科、中西醫整合療法、雷射治療、
+            老年照護、腫瘤外科等豐富經驗，提供全方位且細緻的醫療服務。
             <br /><br />
-            除了內外科與專科診療，我們也積極發展再生醫學與高階療法，從高壓氧治療到針灸調理，期望以更少的負擔帶來更深層的療癒效果。我們不只是解決眼前的病症，更關心寵物的整體福祉與長期生活品質。
+            除了內外科與專科診療，我們也積極發展再生醫學與高階療法，
+            從高壓氧治療到針灸調理，期望以更少的負擔帶來更深層的療癒效果。
+            我們不只是解決眼前的病症，更關心寵物的整體福祉與長期生活品質。
             <br /><br />
-            對我們來說，「醫療」從來不只是冷冰冰的技術，它應該是理解與信任的延伸。我們珍惜與每一位飼主的溝通時光，耐心傾聽，細心說明，只為讓每一位來到這裡的毛小孩與毛小孩爸媽都能感受到安心與尊重。
+            對我們來說，「醫療」從來不只是冷冰冰的技術，它應該是理解與信任的延伸。
+            我們珍惜與每一位飼主的溝通時光，耐心傾聽，細心說明，只為讓每一位來到這裡的毛小孩與毛小孩爸媽都能感受到安心與尊重。
             <br /><br />
             在毛貓寵物動物醫院，我們陪伴的不只是疾病的治療，更是每一段與寵物共度的珍貴旅程。
           </p>
         </div>
+      </section>
 
+      {/* 🔹 醫療團隊 */}
+      <section id="director" className="max-w-[1400px] mx-auto py-16 px-6 text-center">
+        <SectionTitle title="醫療團隊" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-10">
+          {["/director.jpg", "/vet_1.jpg", "/vet_2.jpg"].map((src, index) => (
+            <div key={index} className="w-full">
+              <Image
+                src={src}
+                alt={`獸醫師 ${index + 1}`}
+                width={500} // 寬度實際設定大
+                height={500}
+                className="w-full h-auto object-contain rounded-xl border-4 border-yellow-500 shadow-xl"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
 
+      {/* 🔹 主治項目 */}
+      <section id="services" className="max-w-6xl mx-auto py-16 px-6 text-center bg-[#9D8575] text-white shadow-xl rounded-xl">
+        <SectionTitle title="主治項目" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          {[...servicesList, "諾亞寵物高壓氧"].map((service, index) => (
+            <div
+              key={index}
+              onClick={service === "諾亞寵物高壓氧" ? () => router.push("/oxygen") : undefined}
+              className="bg-[#E6D6CC] shadow-md rounded-xl p-6 text-lg flex items-center gap-2 justify-center text-[#5A4032] cursor-pointer hover:bg-[#d5c3b8] transition"
+            >
+              <FaPaw className="text-yellow-500 text-2xl" /> {service}
+            </div>
+          ))}
+        </div>
+      </section>
 
-        {/* 🔹 我們的優勢 */}
+      {/* 🔹 院內設備 */}
+      <section id="equipment" className="max-w-6xl mx-auto py-12 px-6">
         <div className="bg-white shadow-xl rounded-xl p-8 mt-12">
-          <h2 className="text-4xl font-bold text-[#5A4032] flex items-center justify-center gap-2">
-            <FaPaw className="text-yellow-500" /> 我們的優勢
-          </h2>
+          <SectionTitle title="院內設備" />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
-            {[
-              { title: "隔離病房", description: "提供安全的隔離環境，有效防止傳染病擴散。" },
-              { title: "犬貓重症ICU病房", description: "專業監護設備，24 小時照護危重動物。" },              
-              { title: "諾亞高壓氧保養", description: "透過高壓氧艙提升細胞含氧量，加速術後癒合、改善炎症與慢性疼痛。" },
-              { title: "寵物保險指定醫院", description: "支援多種寵物保險，減輕您的醫療負擔。" }
-            ].map((advantage, index) => (
+            {equipmentList.map((item, index) => (
               <div key={index} className="bg-[#F5F1ED] shadow-md rounded-xl p-6 text-lg text-center">
                 <h3 className="text-xl font-bold text-[#5A4032] flex items-center justify-center gap-2">
-                  <FaPaw className="text-yellow-500" /> {advantage.title}
+                  <FaPaw className="text-yellow-500" /> {item.title}
                 </h3>
-                <p className="mt-2 text-gray-700">{advantage.description}</p>
+                <p className="mt-2 text-gray-700">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 🔹 院長資訊 */}
-      <section id="director" className="max-w-6xl mx-auto py-12 px-6 flex flex-col md:flex-row items-center gap-8">
-        <div className="w-full md:w-1/2">
-          <Image
-            src="/director.jpg"
-            alt="院長 羅致宇"
-            width={600}
-            height={600}
-            className="rounded-xl border-4 border-yellow-500 shadow-xl"
-          />
-        </div>
-
-        <div className="w-full md:w-1/2 bg-white shadow-xl rounded-xl p-8">
-          <h2 className="text-4xl font-bold text-[#5A4032] flex items-center gap-2">
-            <FaPaw className="text-yellow-500" /> 院長資訊
-          </h2>
-          <p>
-            王耀鴻醫師自嘉義大學獸醫系畢業以來，秉持著從小懷抱的正義感與穿上白袍貢獻社會的初心，致力於動物醫療領域，擁有豐富的臨床與教學經歷，尤專精於一般內科、外科、皮膚科與貓科醫療。
-          </p>
-          <p className="mt-3">
-            現任全國動物醫院豐原分院院長，曾擔任全國動物醫院貓醫院院長與多家分院主治醫師，並活躍於各大專院校與業界講座，包括東海大學、國立屏東科技大學、亞太小動物獸醫師大會（FSAVA）、南友威動物藥品公司等，擔任客座講師與巡迴講座講師。
-          </p>
-          <p className="mt-3">
-            他不僅專注於臨床診療，也積極參與醫學教育與課程研發，曾多次於獸醫再教育研討會中發表，並參與皮膚病與青壯齡貓病課程編寫及直播課程主講。
-          </p>
-          <p className="mt-3">
-            王醫師以專業細膩的醫術與對動物的深厚熱忱，獲得飼主高度信賴，是寵物醫療領域中備受肯定的專業典範。
-          </p>
-        </div>
-      </section>
-
-      {/* 🔹 主治項目 */}
-      <section
-        id="services"
-        className="max-w-6xl mx-auto py-16 px-6 text-center bg-[#9D8575] text-white shadow-xl rounded-xl"
-      >
-        <h2 className="text-4xl font-bold flex items-center justify-center gap-2">
-          <FaPaw className="text-yellow-500" /> 主治項目
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-          {[
-            "貓科",
-            "皮膚科",
-            "家醫科",
-            "中西醫整合治療",
-            "四級雷射治療",
-            "老年慢性疾病治療",
-            "一般內科",
-            "一般外科",
-            "軟組織外科",
-            "腫瘤外科",
-            "產科",
-            "健康檢查",
-            "再生醫學"
-          ].map((service, index) => (
-            <div
-              key={index}
-              className="bg-[#E6D6CC] shadow-md rounded-xl p-6 text-lg flex items-center gap-2 justify-center text-[#5A4032]"
-            >
-              <FaPaw className="text-yellow-500 text-2xl" /> {service}
-            </div>
-          ))}
-          {/* 🔹 諾亞寵物高壓氧 - 可點擊導向 `/oxygen` */}
-          <div
-            onClick={() => router.push("/oxygen")} 
-            className="bg-[#E6D6CC] shadow-md rounded-xl p-6 text-lg flex items-center gap-2 justify-center text-[#5A4032] cursor-pointer hover:bg-[#d5c3b8] transition"
-          >
-            <FaPaw className="text-yellow-500 text-2xl" /> 諾亞寵物高壓氧
-          </div>
-        </div>
-      </section>
-
-
       {/* 🔹 聯絡方式 */}
       <section id="contact" className="max-w-6xl mx-auto py-16 px-6 text-center bg-white shadow-xl rounded-xl">
-        <h2 className="text-4xl font-bold text-[#5A4032] flex items-center justify-center gap-2">
-          <FaPaw className="text-yellow-500" /> 聯絡方式
-        </h2>
-
-        {/* 🔹 聯絡資訊 + 門診 & 探視時間 */}
+        <SectionTitle title="聯絡方式" />
         <div className="bg-[#E6D6CC] shadow-lg rounded-xl p-8 mt-6">
-          {/* 地址 & 聯絡資訊 */}
           <div className="text-lg flex flex-col items-center gap-2">
             <p className="flex items-center gap-2">
               <FaMapMarkerAlt className="text-blue-500" />
@@ -161,9 +113,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* 門診時間 */}
           <div className="mt-6 flex flex-col md:flex-row justify-center gap-12">
-            {/* 🔹 門診時間 */}
             <div className="flex-1 text-lg">
               <h3 className="text-2xl font-bold text-[#5A4032] mb-2">門診時間</h3>
               <p>周一到周日 09:00 - 21:00</p>
@@ -171,7 +121,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 🔹 Google 地圖嵌入 */}
+        {/* Google Map */}
         <div className="w-full flex justify-center mt-8">
           <iframe
             title="Google Maps - 毛貓寵動物醫院"
@@ -182,8 +132,35 @@ export default function Home() {
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
-
       </section>
     </main>
   );
 }
+
+// 🔹 可複用元件：標題
+function SectionTitle({ title }: { title: string }) {
+  return (
+    <h2 className="text-4xl font-bold text-[#5A4032] flex items-center justify-center gap-2">
+      <FaPaw className="text-yellow-500" /> {title}
+    </h2>
+  );
+}
+
+// 🔹 主治項目清單
+const servicesList = [
+  "貓科", "皮膚科", "家醫科", "中西醫整合治療",
+  "四級雷射治療", "老年慢性疾病治療", "一般內科",
+  "一般外科", "軟組織外科", "腫瘤外科", "產科", "健康檢查", "再生醫學"
+];
+
+// 🔹 院內設備清單
+const equipmentList = [
+  { title: "高壓氧艙", description: "透過高壓氧艙提升細胞含氧量，加速術後癒合、改善炎症與慢性疼痛。" },
+  { title: "院內寵物PCR檢驗", description: "快速檢測寵物傳染病，提升診斷效率，減少等候時間。" },
+  { title: "IDEXX寵物專用血液檢測", description: "使用IDEXX先進儀器，提供精確快速的血液分析報告。" },
+  { title: "數位X光-DR", description: "高解析數位X光影像，協助即時診斷與判讀。" },
+  { title: "彩色超音波", description: "提供內部器官與心臟評估，適用於多種臨床診斷需求。" },
+  { title: "寵物專用牙科數位X光", description: "針對牙科專用設計的X光，讓牙根與牙周問題一目了然。" },
+  { title: "寵物專用牙科工作台", description: "為寵物牙科治療提供舒適、安全、符合人體工學的操作空間。" },
+];
+
