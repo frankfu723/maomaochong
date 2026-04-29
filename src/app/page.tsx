@@ -37,15 +37,16 @@ export default function Home() {
       </section>
 
       {/* 🔹 醫療團隊 */}
-      <section id="director" className="max-w-[1400px] mx-auto py-16 px-6 text-center">
+      <section id="director" className="max-w-[1000px] mx-auto py-16 px-6 text-center">
         <SectionTitle title="醫療團隊" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-10">
-          {["/director.jpg", "/vet_1.jpg", "/vet_2.jpg"].map((src, index) => (
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mt-10">
+          {["/director.jpg", "/vet_1.jpg"].map((src, index) => (
             <div key={index} className="w-full">
               <Image
                 src={src}
                 alt={`獸醫師 ${index + 1}`}
-                width={500} // 寬度實際設定大
+                width={500}
                 height={500}
                 className="w-full h-auto object-contain rounded-xl border-4 border-yellow-500 shadow-xl"
               />
